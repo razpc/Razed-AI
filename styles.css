@@ -1,0 +1,95 @@
+:root {
+  color-scheme: dark;
+  --bg: #07090d;
+  --panel: rgba(18, 23, 33, 0.8);
+  --panel-border: rgba(180, 210, 255, 0.14);
+  --text: #e8eef8;
+  --muted: #9cb0cd;
+  --brand: #56b4ff;
+  --brand-2: #9f7bff;
+  --user: #123a59;
+  --assistant: #1c2230;
+  --ok: #5be38d;
+  --warn: #ffcc66;
+  --bad: #ff7b7b;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: var(--text);
+  background: radial-gradient(circle at top left, #101424 0%, var(--bg) 45%), var(--bg);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.bg-orb { position: fixed; width: 30rem; height: 30rem; border-radius: 50%; filter: blur(60px); z-index: -1; opacity: .3; }
+.orb-1 { background: var(--brand); left: -8rem; top: -10rem; }
+.orb-2 { background: var(--brand-2); right: -10rem; bottom: -10rem; }
+
+.app-shell { width: min(1000px, 95vw); margin: 1.2rem auto; display: grid; gap: 1rem; }
+.app-header { display: flex; justify-content: space-between; align-items: center; }
+.header-actions { display: flex; align-items: center; gap: .6rem; }
+
+h1 { margin: 0; letter-spacing: .02em; }
+.subtitle { margin: .35rem 0 0; color: var(--muted); }
+
+.status-badge {
+  display: inline-flex; align-items: center; border: 1px solid var(--panel-border); border-radius: 999px;
+  padding: .32rem .62rem; font-size: .82rem; color: var(--muted);
+}
+.status-badge.ok { color: var(--ok); }
+.status-badge.warn { color: var(--warn); }
+.status-badge.bad { color: var(--bad); }
+
+.panel { background: var(--panel); border: 1px solid var(--panel-border); border-radius: 18px; backdrop-filter: blur(6px); padding: 1rem; }
+.settings-panel .grid { display: grid; grid-template-columns: 1fr 180px; gap: .8rem; }
+
+label { display: flex; flex-direction: column; gap: .4rem; font-weight: 600; font-size: .95rem; }
+input, textarea, select, button { font: inherit; }
+input, textarea, select {
+  background: rgba(12, 16, 24, .95); border: 1px solid rgba(173, 196, 255, .24); border-radius: 10px; color: var(--text);
+  padding: .65rem .75rem;
+}
+textarea { resize: vertical; }
+.full-width { margin-top: .8rem; }
+
+.presets { margin-top: .7rem; display: flex; flex-wrap: wrap; align-items: center; gap: .45rem; color: var(--muted); }
+.chip { background: rgba(91, 135, 199, 0.16); color: #bcd3ff; border: 1px solid rgba(123, 164, 220, .3); border-radius: 999px; padding: .26rem .6rem; }
+
+.hint { margin: .7rem 0 0; color: var(--muted); font-size: .85rem; }
+.chat-panel { display: grid; gap: .8rem; }
+
+.chat-log { height: min(58vh, 600px); overflow-y: auto; display: flex; flex-direction: column; gap: .75rem; padding: .25rem; }
+.message { display: grid; grid-template-columns: 2rem 1fr; gap: .65rem; align-items: start; }
+.avatar { width: 2rem; height: 2rem; border-radius: 50%; display: grid; place-items: center; font-size: .72rem; font-weight: 700; color: #fff; }
+.message.user .avatar { background: linear-gradient(160deg, #52b1ff, #2479bf); }
+.message.assistant .avatar { background: linear-gradient(160deg, #ad7cff, #6f53b2); }
+
+.bubble { border-radius: 12px; padding: .7rem .85rem; line-height: 1.45; white-space: pre-wrap; }
+.message.user .bubble { background: var(--user); }
+.message.assistant .bubble { background: var(--assistant); }
+
+.message-actions { margin-top: .35rem; }
+.mini-btn {
+  font-size: .75rem; border: 1px solid rgba(160, 188, 230, 0.24); border-radius: 8px; background: transparent;
+  color: var(--muted); padding: .2rem .45rem;
+}
+
+.composer { display: grid; grid-template-columns: 1fr auto; gap: .6rem; }
+.composer-actions { display: grid; gap: .45rem; align-content: start; }
+
+button { border: 0; border-radius: 10px; cursor: pointer; transition: 120ms ease; }
+#sendBtn { background: linear-gradient(150deg, var(--brand), #6ec4ff); color: #001622; font-weight: 700; padding: .7rem 1rem; }
+#sendBtn:disabled { opacity: .6; cursor: not-allowed; }
+.ghost-btn { background: transparent; color: var(--muted); border: 1px solid rgba(160, 188, 230, 0.24); padding: .55rem .75rem; }
+button:hover { transform: translateY(-1px); }
+
+.typing { opacity: .8; font-style: italic; color: var(--muted); }
+
+@media (max-width: 720px) {
+  .settings-panel .grid, .composer { grid-template-columns: 1fr; }
+  .header-actions { flex-wrap: wrap; justify-content: flex-end; }
+}
