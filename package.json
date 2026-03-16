@@ -1,0 +1,15 @@
+{
+  "name": "razed-ai",
+  "version": "1.0.0",
+  "description": "Razed AI chatbot website with secure server-side API proxy",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1"
+  }
+}
