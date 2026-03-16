@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Razed AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+
+    <main class="app-shell">
+      <header class="app-header panel">
+        <div>
+          <h1>Razed AI</h1>
+          <p class="subtitle">Your powerful web chatbot</p>
+        </div>
+        <div class="header-actions">
+          <span id="statusBadge" class="status-badge">Checking server…</span>
+          <button id="clearChat" class="ghost-btn" aria-label="Clear chat history">Clear Chat</button>
+        </div>
+      </header>
+
+      <section class="panel settings-panel">
+        <h2>Model + Behavior</h2>
+        <div class="grid">
+          <label>
+            Model
+            <select id="model">
+              <option value="Razed 1.5 Fast">gpt-4o-mini</option>
+              <option value="Razed 1.5 Versatile">gpt-4.1-mini</option>
+              <option value="Razed 1.5 Max">gpt-4.1</option>
+            </select>
+          </label>
+
+          <label>
+            Temperature
+            <input id="temperature" type="number" min="0" max="2" step="0.1" value="0.6" />
+          </label>
+        </div>
+
+        <label class="full-width">
+          System Prompt
+          <textarea id="systemPrompt" rows="5"></textarea>
+        </label>
+
+        <div class="presets">
+          <span>Presets:</span>
+          <button type="button" class="chip" data-prompt="assistant">Balanced Assistant</button>
+          <button type="button" class="chip" data-prompt="coder">Code Expert</button>
+          <button type="button" class="chip" data-prompt="founder">Founder Strategist</button>
+        </div>
+
+        <p class="hint">
+          OpenAI key is read from server environment (`OPENAI_API_KEY`) and never saved in browser localStorage.
+        </p>
+      </section>
+
+      <section class="panel chat-panel">
+        <div id="chatLog" class="chat-log" aria-live="polite"></div>
+
+        <form id="chatForm" class="composer">
+          <textarea
+            id="messageInput"
+            rows="2"
+            placeholder="Ask Razed"
+            required
+          ></textarea>
+          <div class="composer-actions">
+            <button id="exportChat" class="ghost-btn" type="button">Export</button>
+            <button id="sendBtn" type="submit">Send</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <template id="messageTemplate">
+      <article class="message">
+        <div class="avatar"></div>
+        <div>
+          <div class="bubble"></div>
+          <div class="message-actions">
+            <button type="button" class="mini-btn copy-btn">Copy</button>
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>
